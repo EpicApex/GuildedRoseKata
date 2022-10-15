@@ -23,6 +23,14 @@ class GildedRoseTest(unittest.TestCase):
         self.assertEqual(19, items[0].sell_in)
         self.assertEqual(31, items[0].quality)
 
+    #"Aged Brie" actually increases in Quality the older it gets
+    # Once the sell by date has passed, Quality degrades twice as fast -> meaning for "Aged Brie" it increases twice as fast past sell date.
+    def test_aged_brie_sell_in_date_passed_quality_increase_by_2(self):
+        items = [Item("Aged Brie", 0, 30)]
+        gilded_rose = GildedRose(items)
+        gilded_rose.update_quality()
+        self.assertEqual(32, items[0].quality)
+
     def test_aged_brie_quality_between_0_and_50(self):
         items = [Item("Aged Brie", 20, 0)]
         self.assertTrue(items[0].quality >= 0 and items[0].quality <= 50)
