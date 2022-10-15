@@ -16,11 +16,7 @@ class GildedRose(object):
                 continue
 
             elif item.name == "Aged Brie":
-                self.item_increase_quality(item)
-                item.sell_in = item.sell_in - 1
-
-                if item.sell_in < 0:
-                    self.item_increase_quality(item)
+                self.aged_brie(item)
                 continue
 
             elif item.name == "Backstage passes to a TAFKAL80ETC concert":
@@ -38,6 +34,13 @@ class GildedRose(object):
                 if item.sell_in < 0:
                     if item.quality > 0:
                         item.quality = item.quality - 1
+
+    def aged_brie(self, item):
+        self.item_increase_quality(item)
+        item.sell_in = item.sell_in - 1
+
+        if item.sell_in < 0:
+            self.item_increase_quality(item)
 
     def concert_backstage_pass(self, item):
         #item quality in this if statement can go above 50 and not be sulfurus, but right after that you have an if that takes care of the case where item quality is above 50 nad set it to 50 again.
