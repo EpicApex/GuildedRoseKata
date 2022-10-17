@@ -37,6 +37,8 @@ class GildedRose(object):
         item.sell_in -= 1
         if item.sell_in < 0:
             item.quality -= 2
+        #make sure quality doesnt go below 0
+        item.quality = max(0,item.quality)
 
     def ordinary_item(self, item):
         if item.quality > 0:
@@ -47,6 +49,8 @@ class GildedRose(object):
         if item.sell_in < 0:
             if item.quality > 0:
                 item.quality -=  1
+        #make sure quality doesnt go below 0
+        item.quality = max(0,item.quality)
 
     def aged_brie(self, item):
         self.item_increase_quality(item)
@@ -69,6 +73,8 @@ class GildedRose(object):
 
         if item.quality > 50:
             item.quality = 50
+        #make sure quality doesnt go below 0
+        item.quality = max(0,item.quality)
 
     def item_increase_quality(self, item):
         if item.quality < 50:
